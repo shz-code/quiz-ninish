@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color:#6d28d9;
+  --secondary-color: #2e1065;
+  --border-color: #e5e7eb;
+  --bg-color: #F4F7FD;
+}
+
+body {
+  background: var(--bg-color);
+  font-family: "Noto Sans Bengali", sans-serif;
+}
+/* Utilities */
+.containerNinish{
+    max-width: 1200px;
+    width: 100%;
+}
+.logo {
+  width: 6rem;
+}
+.logo img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.contactInfo {
+  color: var(--primary-color);
+}
+
+
+/* Nav */
+.desktopNavLinks a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  transition: 0.1s ease;
+}
+
+nav a {
+  color: black;
+}
+nav a:hover {
+  color: var(--primary-color);
+}
+
+/*  নিণীষের পুর্ববর্তী কাজ সমূহ */
+.circ {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+.img-container img {
+  object-fit: contain;
+  width: 100%;
+}
