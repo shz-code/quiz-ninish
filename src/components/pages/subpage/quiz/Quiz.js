@@ -16,7 +16,6 @@ export default function Quiz({ setGotQuiz, id, forceQuizSubmit }) {
   // Initialize form localStorage
   const initializeState = () => {
     const quizzes = JSON.parse(localStorage.getItem("quiz"));
-    console.log(quizzes);
     const modQuizzes = _.cloneDeep(quizzes);
     modQuizzes.forEach((quiz) => {
       quiz.attempted = false;
