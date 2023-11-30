@@ -15,7 +15,7 @@ export default function useQuizList(quizId) {
   useEffect(() => {
     const fetchData = async () => {
       let url = `${baseUrl}/quizzes/${quizId}`;
-      if (user?.regNumber > 100 && user?.regNumber <= 200) {
+      if (user?.regNumber > 100 && user?.regNumber <= 110) {
         url = `${baseUrl}/quizzesM/${quizId}`;
       }
       try {

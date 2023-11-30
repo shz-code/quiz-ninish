@@ -21,6 +21,30 @@ export default function Login() {
 
   return (
     <div className="py-16">
+      <div className="bg-white p-8 rounded-md max-w-[768px] mx-auto text-justify shadow-md">
+        <p>
+          - <b>অফলাইন রেজিষ্ট্রেশন</b> যেসকল প্রতিযোগী
+          স্কুলে/কলেজে/শিক্ষাপ্রতিষ্ঠানে সরাসরি ফর্ম পূরন করে 'মুজিব অলিম্পিয়াড
+          ২০২৩ - ঢাকা' পর্বে রেজিষ্ট্রেশন করেছিলেন, তাদের একটি রেজিষ্ট্রেশন
+          টোকেন পেপার দেওয়া হয়েছিলো। সেই টোকেন পেপারে রেজিষ্ট্রেশন আইডি উল্লেখ
+          করা আছে। প্রত্যেকের রেজিষ্ট্রেশন আইডি ভিন্ন।
+        </p>
+        <p className="mt-4">
+          - <b>অনলাইন রেজিষ্ট্রেশন</b> যেসকল প্রতিযোগী অনলাইনে আমাদের ওয়েবসাইট
+          <a
+            href="https://ninish.com"
+            className="font-semibold"
+            rel="noreferrer"
+            target="_blank"
+          >
+            {" "}
+            ninish.com
+          </a>{" "}
+          ব্যাবহার করে রেজিষ্ট্রেশন করেছেন এবং ১০০টাকা রেজিষ্ট্রেশন ফি দিয়েছিলেন
+          শুধু তাদের রেজিষ্ট্রেশন এপ্রুভ করা হয়েছে। আপনারা ওয়েবসাইটে 'একাউন্ট'
+          অপশন এ যেয়ে আপনাদের ড্যাশবোর্ড থেকে রেজিষ্ট্রেশন আইডি পেয়ে যাবেন।
+        </p>
+      </div>
       <div className="form pt-20">
         <h1 className="text-4xl sm:text-5xl pb-3 text-center font-semibold">
           মুজিব অলিম্পিয়াড ২০২৩ - ঢাকা জেলা পর্ব
@@ -33,7 +57,7 @@ export default function Login() {
           onSubmit={handleSubmit}
         >
           <div className="pb-10">
-            <label htmlFor="">রেজিস্ট্রেশন নম্বর (In English)</label>
+            <label htmlFor="">রেজিস্ট্রেশন আইডি (In English)</label>
             <input
               id="regNumber"
               required

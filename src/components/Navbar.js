@@ -35,7 +35,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
               >
-                ডেসবোর্ড
+                ড্যাশবোর্ড
               </a>
             </li>
             <li>
