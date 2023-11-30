@@ -17,11 +17,51 @@ const ContextProvider = (props) => {
       setUser({
         name: localUser.name,
         regNumber: localUser.regNumber,
-        phone: localUser.phone,
         quizDone: localUser.quizDone,
         quizId: localUser.quizId,
       });
     }
+  };
+
+  const modifyUser = async (name, cls, institute, district, quizCategory) => {
+    try {
+      const res = await fetch(`${baseUrl}/modifyUser`, {
+        method: "post",
+        body: JSON.stringify({
+          name: name,
+          cls: cls,
+          institute: institute,
+          district: district,
+          quizCategory: quizCategory,
+          regNumber: user.regNumber,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (data.status === 200) {
+        setUser({
+          name: name,
+          quizId: quizCategory,
+          regNumber: user.regNumber,
+          quizDone: false,
+        });
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: name,
+            quizId: quizCategory,
+            regNumber: user.regNumber,
+            quizDone: false,
+          })
+        );
+      }
+      navigate("/quiz");
+    } catch (error) {}
   };
 
   const login = async (regNumber, phone) => {
@@ -43,7 +83,6 @@ const ContextProvider = (props) => {
         setUser({
           name: data.name,
           regNumber: regNumber,
-          phone: phone,
           quizDone: data.quizCompleted,
           quizId: data.quizId,
         });
@@ -53,14 +92,35 @@ const ContextProvider = (props) => {
           JSON.stringify({
             name: data.name,
             regNumber: regNumber,
-            phone: phone,
             quizDone: data.quizCompleted,
             quizId: data.quizId,
           })
         );
         navigate("/quiz");
+      } else if (data.status === 201) {
+        setUser({
+          name: "",
+          regNumber: regNumber,
+          quizDone: false,
+          quizId: "",
+        });
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: "",
+            regNumber: regNumber,
+            quizDone: false,
+            quizId: "",
+          })
+        );
+        navigate("/n");
       } else if (data.status === 402) {
         toast.error("আপনি রেজিস্ট্রেশন ফি দেন নি।");
+      } else if (data.status === 401) {
+        toast.error(
+          "আপনি ঢাকা পর্বের জন্য রেজিস্ট্রেশন করেন নি/ ভুল নম্বর দিয়েছেন"
+        );
       } else {
         toast.error(
           "আপনার রেজিস্ট্রেশন নম্বর অথবা ফোন নম্বর ভুল। আবার চেষ্টা করুন।"
@@ -73,36 +133,52 @@ const ContextProvider = (props) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.clear();
+    localStorage.removeItem("user");
+    localStorage.removeItem("quiz");
   };
 
-  const submitQuiz = async (quizzes) => {
-    let data = {
+  const submitQuiz = async (quizzes, quizTime, minutes, seconds) => {
+    let params = {
       quizzes: quizzes,
       user: user,
+      totalTime: quizTime,
+      minutes: minutes,
+      seconds: seconds,
     };
     try {
       if (user != null) {
         const res = await fetch(`${baseUrl}/submit`, {
           method: "post",
-          body: JSON.stringify(data),
+          body: JSON.stringify(params),
           headers: {
             "Content-Type": "application/json",
           },
         });
-        if (res.status === 200) {
+        const data = await res.json();
+        if (data.status === 200) {
           setUser({ ...user, quizDone: true });
           localStorage.setItem(
             "user",
             JSON.stringify({
               name: user.name,
-              phone: user.phone,
               regNumber: user.regNumber,
               quizDone: true,
               quizId: user.quizId,
             })
           );
           toast.success("আপনার উত্তর সফলভাবে জমা হয়েছে। ধন্যবাদ।");
+        } else if (data.status === 409) {
+          toast.error("আপনি একবার কুইজ জমা দিয়েছেন");
+          setUser({ ...user, quizDone: true });
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              name: user.name,
+              regNumber: user.regNumber,
+              quizDone: true,
+              quizId: user.quizId,
+            })
+          );
         }
         if (res.status === 406) {
           toast.error("দুঃখিত সময় শেষ হয়ে গিয়েছে।");
@@ -121,6 +197,7 @@ const ContextProvider = (props) => {
         submitQuiz,
         logout,
         initialize,
+        modifyUser,
       }}
     >
       {props.children}

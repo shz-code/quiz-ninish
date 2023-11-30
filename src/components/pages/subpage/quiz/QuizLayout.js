@@ -13,8 +13,10 @@ export default function QuizLayout() {
       : Number(quizId) === 2
       ? 25
       : Number(quizId) === 3
-      ? 35
-      : 45
+      ? 30
+      : Number(quizId) === 4
+      ? 40
+      : 35
   );
   const [seconds, setSeconds] = useState(0);
   const [ready, setReady] = useState(false);
@@ -40,6 +42,17 @@ export default function QuizLayout() {
   timeLeft.setMinutes(timeLeft.getMinutes() + Number(totalTime));
   timeLeft.setSeconds(timeLeft.getSeconds() + Number(seconds));
 
+  const quizTime =
+    Number(quizId) === 1
+      ? 20
+      : Number(quizId) === 2
+      ? 25
+      : Number(quizId) === 3
+      ? 30
+      : Number(quizId) === 4
+      ? 40
+      : 35;
+
   return (
     <div className="container mx-auto py-4">
       {/* Quiz Header */}
@@ -54,7 +67,9 @@ export default function QuizLayout() {
             ? "নিম্ন মাধ্যমিক(৬ষ্ঠ,৭ম,৮ম)"
             : Number(quizId) === 3
             ? "মাধ্যমিক(৯ম ও ১০ম)"
-            : "উচ্চ মাধ্যমিক(১১শ ও ১২শ)"}
+            : Number(quizId) === 4
+            ? "উচ্চ মাধ্যমিক(১১শ ও ১২শ)"
+            : "বিশ্ববিদ্যালয়"}
         </p>
         <p className="flex justify-center gap-4 text-lg">
           <span>
@@ -65,20 +80,12 @@ export default function QuizLayout() {
               ? 40
               : Number(quizId) === 3
               ? 50
+              : Number(quizId) === 3
+              ? 60
               : 60}{" "}
             টি
           </span>
-          <span>
-            মোট সময়ঃ{" "}
-            {Number(quizId) === 1
-              ? 20
-              : Number(quizId) === 2
-              ? 25
-              : Number(quizId) === 3
-              ? 35
-              : 45}{" "}
-            মিনিট
-          </span>
+          <span>মোট সময়ঃ {quizTime} মিনিট</span>
         </p>
         <div className="mt-2 font-semibold text-xl">
           অবশিষ্ট সময়ঃ
@@ -99,6 +106,7 @@ export default function QuizLayout() {
         setGotQuiz={setGotQuiz}
         id={quizId}
         forceQuizSubmit={forceQuizSubmit}
+        quizTime={quizTime}
       />
     </div>
   );

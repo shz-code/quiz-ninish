@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import quizContext from "../../../../contextApi/QuizContext";
 
 export default function QuizOption({ option, ind, quizNumber }) {
@@ -11,13 +11,17 @@ export default function QuizOption({ option, ind, quizNumber }) {
     handleQuizUpdate(quizNumber, ind, !selected);
   };
 
+  useEffect(() => {
+    setSelected(option.isSelected);
+  }, [option.isSelected]);
+
   return (
     <div className="quizOption">
       <label
         htmlFor={`ck_${ind}_${quizNumber}`}
         className={`cursor-pointer w-full text-white  rounded-md px-4 py-2
         flex items-center gap-2 ${
-          selected ? "bg-violet-900" : "bg-violet-600 hover:bg-purple-800"
+          selected ? "bg-violet-600" : "bg-violet-600 hover:bg-purple-800"
         }`}
         tabIndex="0"
         aria-label={title}

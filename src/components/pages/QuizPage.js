@@ -2,14 +2,14 @@ import { Loader2 } from "lucide-react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import MainContext from "../../contextApi/MainContext";
-import useQuizList from "../../hooks/useQuiz";
+import useQuiz from "../../hooks/useQuiz";
 import Rules from "./subpage/Rules";
 
 export default function QuizPage() {
   const mainContext = useContext(MainContext);
   const { user } = mainContext;
 
-  const { quizList, isLoading, isError, quizOpen } = useQuizList(user.quizId);
+  const { quizList, isLoading, isError, quizOpen } = useQuiz(user.quizId);
 
   let content = null;
 
@@ -29,7 +29,7 @@ export default function QuizPage() {
               <p>
                 মুজিব অলিম্পিয়াড ২০২৩ - ঢাকা জেলা পর্বের কুইজ আগামী{" "}
                 <span className="font-semibold text-2xl bg-green-300 px-2 rounded-md">
-                  ১৩ই অক্টোবর(সকাল ৯ টা - দুপুর ১ টা)
+                  ১লা ডিসেম্বর(সকাল ৮ টা - দুপুর ১ টা)
                 </span>
               </p>
               <p>

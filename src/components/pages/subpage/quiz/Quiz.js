@@ -5,13 +5,13 @@ import MainContext from "../../../../contextApi/MainContext";
 import quizContext from "../../../../contextApi/QuizContext";
 import Question from "./Question";
 
-export default function Quiz({ setGotQuiz, id, forceQuizSubmit }) {
+export default function Quiz({ setGotQuiz, id, forceQuizSubmit, quizTime }) {
   const [loadedQuiz, setLoadedQuiz] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [quizzes, setQuizzes] = useState({});
 
-  const { submitQuiz } = useContext(MainContext);
+  const { user, submitQuiz } = useContext(MainContext);
 
   // Initialize form localStorage
   const initializeState = () => {
@@ -43,8 +43,16 @@ export default function Quiz({ setGotQuiz, id, forceQuizSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const res = window.confirm("আপনি আসলেই কুইজ জমা দিবেন?");
-    res && (await submitQuiz(quizzes));
+    const res = window.confirm("আপনি কুইজ জমা দেয়ার একটি সুযোগ পাবেন।");
+
+    let minutes = localStorage.getItem(
+      `totalTime_${user.regNumber}_${user.quizId}`
+    );
+    let seconds = localStorage.getItem(
+      `seconds_${user.regNumber}_${user.quizId}`
+    );
+
+    res && (await submitQuiz(quizzes, quizTime, minutes, seconds));
     setLoading(false);
   };
 

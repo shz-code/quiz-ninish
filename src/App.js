@@ -7,6 +7,7 @@ import PublicOutlet from "./PublicOutlet";
 import RestrictedOutlet from "./RestrictedOutlet";
 import Layout from "./components/Layout";
 import Login from "./components/pages/Login";
+import NewReg from "./components/pages/NewReg";
 import QuizPage from "./components/pages/QuizPage";
 import Certificate from "./components/pages/subpage/Certificate";
 import Download from "./components/pages/subpage/Download";
@@ -30,6 +31,14 @@ function App() {
               }
             />
             {/* Pages that only visible to logged in user */}
+            <Route
+              path="/n"
+              element={
+                <PrivateOutlet>
+                  <NewReg />
+                </PrivateOutlet>
+              }
+            />
             <Route
               path="/quiz"
               element={

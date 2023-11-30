@@ -1,7 +1,7 @@
 import { Loader2, ThumbsUp } from "lucide-react";
 import React, { useContext, useState } from "react";
 import MainContext from "../../../contextApi/MainContext";
-import img from "../../../images/Certificate.jpg";
+import img from "../../../images/certificate.png";
 
 export default function Download() {
   const mainContext = useContext(MainContext);

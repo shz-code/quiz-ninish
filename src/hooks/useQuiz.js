@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import MainContext from "../contextApi/MainContext";
 
 export default function useQuizList(quizId) {
@@ -25,7 +26,7 @@ export default function useQuizList(quizId) {
 
         if (data === 412) {
           setQuizOpen(false);
-          // toast.error("পরীক্ষা শেষ। ধন্যবাদ।");
+          toast.error("পরীক্ষা এর সময় ১লা ডিসেম্বর সকাল ৮ টা - দুপুর ১ টা");
         } else {
           setQuizList(data);
           setQuizOpen(true);
