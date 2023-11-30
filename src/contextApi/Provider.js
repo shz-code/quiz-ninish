@@ -33,7 +33,7 @@ const ContextProvider = (props) => {
           institute: institute,
           district: district,
           quizCategory: quizCategory,
-          regNumber: user.regNumber,
+          regNumber: Number(localStorage.getItem("regNumber")),
         }),
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const ContextProvider = (props) => {
         setUser({
           name: name,
           quizId: quizCategory,
-          regNumber: user.regNumber,
+          regNumber: Number(localStorage.getItem("regNumber")),
           quizDone: false,
         });
 
@@ -55,7 +55,7 @@ const ContextProvider = (props) => {
           JSON.stringify({
             name: name,
             quizId: quizCategory,
-            regNumber: user.regNumber,
+            regNumber: Number(localStorage.getItem("regNumber")),
             quizDone: false,
           })
         );
@@ -98,22 +98,7 @@ const ContextProvider = (props) => {
         );
         navigate("/quiz");
       } else if (data.status === 201) {
-        setUser({
-          name: "",
-          regNumber: regNumber,
-          quizDone: false,
-          quizId: "",
-        });
-
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            name: "",
-            regNumber: regNumber,
-            quizDone: false,
-            quizId: "",
-          })
-        );
+        localStorage.setItem("regNumber", regNumber);
         navigate("/n");
       } else if (data.status === 402) {
         toast.error("আপনি রেজিস্ট্রেশন ফি দেন নি।");

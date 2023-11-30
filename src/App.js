@@ -34,9 +34,9 @@ function App() {
             <Route
               path="/n"
               element={
-                <PrivateOutlet>
+                <PublicOutlet>
                   <NewReg />
-                </PrivateOutlet>
+                </PublicOutlet>
               }
             />
             <Route

@@ -1,29 +1,19 @@
 import { Loader2 } from "lucide-react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import MainContext from "../../contextApi/MainContext";
 
 export default function NewReg() {
   const mainContext = useContext(MainContext);
-  const { user, modifyUser } = mainContext;
-
-  const navigate = useNavigate();
+  const { modifyUser } = mainContext;
 
   const [formData, setFormData] = useState({
     name: "",
     cls: "",
     institute: "",
-    district: "",
     quizCategory: "",
   });
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (user.quizId !== "") {
-      navigate("/quiz");
-    }
-  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +25,7 @@ export default function NewReg() {
         formData.name,
         formData.cls,
         formData.institute,
-        formData.district,
+        "Dhaka",
         formData.quizCategory
       );
     }
@@ -68,6 +58,10 @@ export default function NewReg() {
                 setFormData({ ...formData, name: e.target.value })
               }
             />
+            <p className="mt-2 font-semibold text-red-600">
+              এখানে প্রদত্ত নামই সার্টিফিকেটের জন্য ব্যাবহার করা হবে। একবার জমা
+              দিলে তা আর পরিবর্তনযোগ্য নয়।
+            </p>
           </div>
           {/* Class */}
           <div className="pb-10">
@@ -107,11 +101,9 @@ export default function NewReg() {
               required
               placeholder="আপনার জেলা"
               type="text"
-              className="rounded-md text-black mt-3 w-full border border-purple-300 p-3 bg-purple-100"
-              value={formData.district}
-              onChange={(e) =>
-                setFormData({ ...formData, district: e.target.value })
-              }
+              className="rounded-md text-black mt-3 w-full border border-purple-300 p-3 bg-purple-100 disabled:bg-slate-400"
+              defaultValue={"ঢাকা"}
+              disabled
             />
           </div>
           {/* Quiz Category */}
@@ -129,15 +121,15 @@ export default function NewReg() {
               }
             >
               <option hidden>নির্বাচন করুন</option>
-              <option value="1">প্রাথমিক</option>
-              <option value="2">নিম্ন মাধ্যমিক</option>
-              <option value="3">মাধ্যমিক</option>
-              <option value="4">উচ্চ মাধ্যমিক</option>
+              <option value="1">প্রাথমিক (৩য়, ৪র্থ ও ৫ম)</option>
+              <option value="2">নিম্ন মাধ্যমিক (৬ষ্ঠ, ৭ম ও ৮ম)</option>
+              <option value="3">মাধ্যমিক (৯ম ও ১০ম)</option>
+              <option value="4">উচ্চ মাধ্যমিক (১১শ ও ১২শ)</option>
               <option value="5">বিশ্ববিদ্যালয়</option>
             </select>
           </div>
           {/* Button */}
-          <div className="pb-10">
+          <div className="pb-10 flex justify-center">
             <button
               type="submit"
               className="bg-gradient-to-tr from-violet-700 to-indigo-800 text-white font-bold py-3 px-7 rounded-full disabled:from-slate-950 disabled:to-slate-800"

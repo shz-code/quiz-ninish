@@ -71,7 +71,7 @@ export default function Login() {
             />
           </div>
           <div className="pb-10">
-            <label htmlFor="">ফোন নম্বর</label>
+            <label htmlFor="">ফোন নম্বর (In English)</label>
             <div className="flex mt-2 justify-center md:justify-start">
               <div className="flex items-center px-2  bg-slate-200 border border-r-0 border-purple-300 rounded-l-md">
                 <span className="mt-1 text-slate-500">+88</span>
