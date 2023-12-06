@@ -46,7 +46,7 @@ export default function NewReg() {
         >
           <div className="pb-10">
             {/* Name */}
-            <label htmlFor="name">নামঃ</label>
+            <label htmlFor="name">নামঃ (In English)</label>
             <input
               id="name"
               required

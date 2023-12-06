@@ -27,9 +27,9 @@ export default function QuizPage() {
             <h3 className="text-3xl font-semibold">অনলাইন কুইজ বিষয়ক তথ্যঃ</h3>
             <div className="text-lg grid gap-2 mt-2">
               <p>
-                মুজিব অলিম্পিয়াড ২০২৩ - ঢাকা জেলা পর্বের কুইজ আগামী{" "}
+                মুজিব অলিম্পিয়াড ২০২৩ - অন্যান্য জেলা পর্বের কুইজ আগামী{" "}
                 <span className="font-semibold text-2xl bg-green-300 px-2 rounded-md">
-                  ১লা ডিসেম্বর(সকাল ৮ টা - দুপুর ১ টা)
+                  ৮ ডিসেম্বর(সকাল ৮ টা - দুপুর ১ টা)
                 </span>
               </p>
               <p>
@@ -69,7 +69,7 @@ export default function QuizPage() {
   return (
     <div className="py-16">
       <h1 className="text-4xl sm:text-5xl pb-3 text-center font-semibold">
-        মুজিব অলিম্পিয়াড ২০২৩ - ঢাকা জেলা পর্ব
+        মুজিব অলিম্পিয়াড ২০২৩ - অন্যান্য জেলা পর্ব
       </h1>
       {content}
     </div>

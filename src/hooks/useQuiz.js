@@ -26,7 +26,7 @@ export default function useQuizList(quizId) {
 
         if (data === 412) {
           setQuizOpen(false);
-          toast.error("পরীক্ষা এর সময় ১লা ডিসেম্বর সকাল ৮ টা - দুপুর ১ টা");
+          toast.error("পরীক্ষা এর সময় ৮ ডিসেম্বর সকাল ৮ টা - দুপুর ১ টা");
         } else {
           setQuizList(data);
           setQuizOpen(true);

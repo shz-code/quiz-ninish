@@ -9,26 +9,20 @@ export default function Login() {
   const [formData, setFormData] = useState({
     regNumber: "",
     phone: "",
+    name: "",
   });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await login(formData.regNumber, formData.phone);
+    await login(formData.regNumber, formData.phone, formData.name);
     setLoading(false);
   };
 
   return (
     <div className="py-16">
       <div className="bg-white p-8 rounded-md max-w-[768px] mx-auto text-justify shadow-md">
-        <p>
-          - <b>অফলাইন রেজিষ্ট্রেশন</b> যেসকল প্রতিযোগী
-          স্কুলে/কলেজে/শিক্ষাপ্রতিষ্ঠানে সরাসরি ফর্ম পূরন করে 'মুজিব অলিম্পিয়াড
-          ২০২৩ - ঢাকা' পর্বে রেজিষ্ট্রেশন করেছিলেন, তাদের একটি রেজিষ্ট্রেশন
-          টোকেন পেপার দেওয়া হয়েছিলো। সেই টোকেন পেপারে রেজিষ্ট্রেশন আইডি উল্লেখ
-          করা আছে। প্রত্যেকের রেজিষ্ট্রেশন আইডি ভিন্ন।
-        </p>
         <p className="mt-4">
           - <b>অনলাইন রেজিষ্ট্রেশন</b> যেসকল প্রতিযোগী অনলাইনে আমাদের ওয়েবসাইট
           <a
@@ -47,15 +41,29 @@ export default function Login() {
       </div>
       <div className="form pt-20">
         <h1 className="text-4xl sm:text-5xl pb-3 text-center font-semibold">
-          মুজিব অলিম্পিয়াড ২০২৩ - ঢাকা জেলা পর্ব
+          মুজিব অলিম্পিয়াড ২০২৩ - অন্যান্য জেলা পর্ব
         </h1>
         <p className="text-center text-lg text-red-500">
-          শুধু ঢাকা পর্বের পরীক্ষার্থী অংশ নিতে পারবেন।
+          ঢাকা, গাজীপুর ও খুলনা জেলা ব্যাতিত পরীক্ষার্থী অংশ নিতে পারবেন।
         </p>
         <form
           className="max-w-[768px] w-full px-2 mx-auto mt-8"
           onSubmit={handleSubmit}
         >
+          <div className="pb-10">
+            <label htmlFor="name">নামঃ (In English)</label>
+            <input
+              id="name"
+              required
+              placeholder="আপনার নাম লিখুন"
+              type="text"
+              className="rounded-md text-black mt-3 w-full border border-purple-300 p-3 bg-purple-100"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+            />
+          </div>
           <div className="pb-10">
             <label htmlFor="">রেজিস্ট্রেশন আইডি (In English)</label>
             <input

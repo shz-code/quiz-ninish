@@ -64,10 +64,11 @@ const ContextProvider = (props) => {
     } catch (error) {}
   };
 
-  const login = async (regNumber, phone) => {
+  const login = async (regNumber, phone, name) => {
     const params = {
       regNumber: regNumber,
       phone: phone,
+      name: name,
     };
     try {
       const res = await fetch(`${baseUrl}/login`, {
@@ -104,7 +105,7 @@ const ContextProvider = (props) => {
         toast.error("আপনি রেজিস্ট্রেশন ফি দেন নি।");
       } else if (data.status === 401) {
         toast.error(
-          "আপনি ঢাকা পর্বের জন্য রেজিস্ট্রেশন করেন নি/ ভুল নম্বর দিয়েছেন"
+          "আপনি অন্যান্য জেলা পর্বের জন্য রেজিস্ট্রেশন করেন নি/ ভুল নম্বর দিয়েছেন"
         );
       } else {
         toast.error(
